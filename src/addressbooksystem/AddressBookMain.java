@@ -1,49 +1,56 @@
 package addressbooksystem;
 
+import java.util.*;
+
 public class AddressBookMain {
 	public static void main(String[] args) {
-		System.out.println("Welcome to Address Book Program");
+		// print welcome message
+		System.out.println("     WELCOME  TO ADDRESS BOOK PROGRAM");
+
+		// create object for customer 1
+		AddressBook customer1 = new AddressBook();
+
+		// pass customer 1 data
+		customer1.setFirstName("Samim");
+		customer1.setLastName("Aktar");
+		customer1.setAddress("Ghatkesar");
+		customer1.setCity("Hyderabad");
+		customer1.setState("Telangana");
+		customer1.setZip("501301");
+		customer1.setPhoneNumber("123456");
+		customer1.setEmail("Samim@gmail.com");
 		
-		AddressBook c1 = new AddressBook();
-		c1.setFirstName("Samim");
-		c1.setLastName("Aktar");
-		c1.setAddress("Ghatkesar");
-		c1.setCity("Hyderabad");
-		c1.setState("Telangana");
-		c1.setZip("501301");
-		c1.setPhoneNumber("123456");
-		c1.setEmail("Samim@gmail.com");
-		
-		AddressBook c2= new AddressBook();
-		c2.setFirstName("Jon");
-		c2.setLastName("Jack");
-		c2.setAddress("Howrha");
-		c2.setCity("Kolkata");
-		c2.setState("WestBengal");
-		c2.setZip("732124");
-		c2.setPhoneNumber("67890");
-		c2.setEmail("jon@gmail.com");
-		
-		AddressBook c3= new AddressBook();
-		c3.setFirstName("Vikas");
-		c3.setLastName("Gupta");
-		c3.setAddress("HiTech");
-		c3.setCity("Hyderabad");
-		c3.setState("Telangana");
-		c3.setZip("234543");
-		c3.setPhoneNumber("247564");
-		c3.setEmail("vikas@gmail.com");
-		
-		ContactStore contactStore =new ContactStore();
-		contactStore.add(c1);
-		contactStore.add(c2);
-		contactStore.add(c3);
-		
+		AddressBook addressBook = new AddressBook();
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("------- Enter details of new person ---------");
+
+		System.out.print("Enter Frist Name: ");
+		addressBook.setFirstName(scanner.nextLine());
+		System.out.print("Enter Last Name: ");
+		addressBook.setLastName(scanner.nextLine());
+		System.out.print("Enter Address: ");
+		addressBook.setAddress(scanner.nextLine());
+		System.out.print("Enter City: ");
+		addressBook.setCity(scanner.nextLine());
+		System.out.print("Enter State: ");
+		addressBook.setState(scanner.nextLine());
+		System.out.print("Enter Pin: ");
+		addressBook.setZip(scanner.nextLine());
+		System.out.print("Enter Phone Number: ");
+		addressBook.setPhoneNumber(scanner.nextLine());
+		System.out.print("Enter Email: ");
+		addressBook.setEmail(scanner.nextLine());
+
+		// create object for contactStore
+		ContactStore contactStore = new ContactStore();
+
+		// add customer data into contact store
+		contactStore.add(customer1);
+		contactStore.add(addressBook);
+
 		UserInterface userInterface = new UserInterface();
 		userInterface.print(contactStore.getContactList());
-		
-		
-		
+
 	}
 
 }
