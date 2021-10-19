@@ -24,9 +24,20 @@ public class AddressBookMain {
 		c2.setPhoneNumber("67890");
 		c2.setEmail("jon@gmail.com");
 		
+		AddressBook c3= new AddressBook();
+		c3.setFirstName("Vikas");
+		c3.setLastName("Gupta");
+		c3.setAddress("HiTech");
+		c3.setCity("Hyderabad");
+		c3.setState("Telangana");
+		c3.setZip("234543");
+		c3.setPhoneNumber("247564");
+		c3.setEmail("vikas@gmail.com");
+		
 		ContactStore contactStore =new ContactStore();
 		contactStore.add(c1);
 		contactStore.add(c2);
+		contactStore.add(c3);
 		
 		UserInterface userInterface = new UserInterface();
 		userInterface.print(contactStore.getContactList());
