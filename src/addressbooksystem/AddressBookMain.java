@@ -6,11 +6,12 @@ public class AddressBookMain {
 	public static void main(String[] args) {
 		// print welcome message
 		System.out.println("WELCOME  TO ADDRESS BOOK PROGRAM");
+		
+		// create object for taking input from console9
+		Scanner scanner = new Scanner(System.in);
 
-		// create object for customer 1
+		// create object for contact One
 		AddressBook contactOne = new AddressBook();
-
-		// pass customer 1 data
 		contactOne.setFirstName("Samim");
 		contactOne.setLastName("Aktar");
 		contactOne.setAddress("Ghatkesar");
@@ -20,80 +21,80 @@ public class AddressBookMain {
 		contactOne.setPhoneNumber("123456");
 		contactOne.setEmail("Samim@gmail.com");
 		
-		// create object in AddressBook class for add new person
+		// Create object for contact two
 		AddressBook contactTwo = new AddressBook();
-		
-		// create object for taking input
-		Scanner scanner = new Scanner(System.in);
-		
-		// Print Message for user
-		System.out.println("------- Enter details of new person ---------");
-		
-		// take input from user
-		System.out.print("Enter Frist Name: ");
-		contactTwo.setFirstName(scanner.nextLine());
-		System.out.print("Enter Last Name: ");
-		contactTwo.setLastName(scanner.nextLine());
-		System.out.print("Enter Address: ");
-		contactTwo.setAddress(scanner.nextLine());
-		System.out.print("Enter City: ");
-		contactTwo.setCity(scanner.nextLine());
-		System.out.print("Enter State: ");
-		contactTwo.setState(scanner.nextLine());
-		System.out.print("Enter Pin: ");
-		contactTwo.setZip(scanner.nextLine());
-		System.out.print("Enter Phone Number: ");
-		contactTwo.setPhoneNumber(scanner.nextLine());
-		System.out.print("Enter Email: ");
-		contactTwo.setEmail(scanner.nextLine());
+		contactTwo.setFirstName("Rohit");
+		contactTwo.setLastName("Raj");
+		contactTwo.setAddress("Kathi");
+		contactTwo.setCity("Malda");
+		contactTwo.setState("West Bengal");
+		contactTwo.setZip("102932");
+		contactTwo.setPhoneNumber("8639096");
+		contactTwo.setEmail("rohit@gmail.com");
 
 		// create object for contactStore
 		ContactStore contactStore = new ContactStore();
 
-		// add customer data into contact store
+		// add contact data into contact store
 		contactStore.add(contactOne);
 		contactStore.add(contactTwo);
-		
-		// create object for userInterface 
+
+		// create object for userInterface
 		UserInterface userInterface = new UserInterface();
-		
+
 		// print contact details
 		userInterface.print(contactStore.getContactList());
-	
-		System.out.println("--------- Contact Edit ------------");
-		// print message for user 
 		
-		System.out.print("Find contact detail using First Name: ");
-		String name = scanner.nextLine();
+		// initialize boolean variable and store true 
+		boolean check = true;
 		
-		// check contact is available or not
-		if(contactOne.getFirstName().equalsIgnoreCase(name) == true)
-			userInterface.edit(contactOne);
-		else if (contactTwo.getFirstName().equalsIgnoreCase(name)== true)
-			userInterface.edit(contactTwo);
-		else
-			System.out.println("Contact Details invalid");
-		
-		System.out.println(" -------- Contact List after edit ---------- ");
-		userInterface.print(contactStore.getContactList());
-		
-		System.out.println("--------- Delete Contact ------------");
-		
-		// print message for user
-		System.out.print("Find contact detail using First Name: ");
-		String contactName = scanner.nextLine();
-		
-		// remove contact detail
-		if(contactOne.getFirstName().equalsIgnoreCase(contactName) == true)
-			contactStore.remove(contactOne);
-		else if (contactTwo.getFirstName().equalsIgnoreCase(contactName) == true)
-			contactStore.remove(contactTwo);
-		else
-			System.err.println("Contact details not found");
-		
-		System.out.println(" -------- Contact List after delete ---------- ");
-		userInterface.print(contactStore.getContactList());
-		
+		// check condition
+		while (check == true) {
+			// message for user choice
+			System.out.println("------ Enter your choice ------- \n 1.Add the new contact\n 2.Edit Existing contact\n 3.Remove the contact");
+			// take value from user
+			int choice = scanner.nextInt();
+			switch (choice) {
+				case 1:
+					// create object
+					AddressBook contact = new AddressBook();
+					// call method
+					userInterface.addContact(contact);
+					// store contact information
+					contactStore.add(contact);
+					System.out.println("----- Contact List after add -------");
+					userInterface.print(contactStore.getContactList());
+					break;
+				case 2:
+					// print message for user
+					System.out.println("Enter name of contact you want to edit");
+					// take name from user
+					String name = scanner.nextLine();
+					// check condition for edit
+					if (contactOne.getFirstName().equalsIgnoreCase(name) == true)
+						userInterface.edit(contactOne);
+					else if (contactTwo.getFirstName().equalsIgnoreCase(name) == true)
+						userInterface.edit(contactTwo);
+					System.out.println("-------Contact List after edit--------");
+					userInterface.print(contactStore.getContactList());
+					break;
+				case 3:
+					// print message for user
+					System.out.println("Enter name of person you want to delete");
+					//take input from user
+					String contactName = scanner.nextLine();
+					// check condition for delete
+					if (contactOne.getFirstName().equalsIgnoreCase(contactName) == true)
+						contactStore.remove(contactOne);
+					else if (contactTwo.getFirstName().equalsIgnoreCase(contactName) == true)
+						contactStore.remove(contactTwo);
+					System.out.println("Contact List after deletion");
+					userInterface.print(contactStore.getContactList());
+					break;
+				default:
+					check = false;
+					System.out.println("Invalid choice and Exited ");
+			}
+		}
 	}
-
 }
