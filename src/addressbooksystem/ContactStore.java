@@ -9,8 +9,8 @@ public class ContactStore {
 		return contactList;
 	}
 
-	public void add(AddressBook address) {
-		contactList.add(address);
+	public void add(AddressBook contact) {
+		contactList.add(contact);
 	}
 
 }

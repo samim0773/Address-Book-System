@@ -5,52 +5,77 @@ import java.util.*;
 public class AddressBookMain {
 	public static void main(String[] args) {
 		// print welcome message
-		System.out.println("     WELCOME  TO ADDRESS BOOK PROGRAM");
+		System.out.println("WELCOME  TO ADDRESS BOOK PROGRAM");
 
 		// create object for customer 1
-		AddressBook customer1 = new AddressBook();
+		AddressBook contactOne = new AddressBook();
 
 		// pass customer 1 data
-		customer1.setFirstName("Samim");
-		customer1.setLastName("Aktar");
-		customer1.setAddress("Ghatkesar");
-		customer1.setCity("Hyderabad");
-		customer1.setState("Telangana");
-		customer1.setZip("501301");
-		customer1.setPhoneNumber("123456");
-		customer1.setEmail("Samim@gmail.com");
+		contactOne.setFirstName("Samim");
+		contactOne.setLastName("Aktar");
+		contactOne.setAddress("Ghatkesar");
+		contactOne.setCity("Hyderabad");
+		contactOne.setState("Telangana");
+		contactOne.setZip("501301");
+		contactOne.setPhoneNumber("123456");
+		contactOne.setEmail("Samim@gmail.com");
 		
-		AddressBook addressBook = new AddressBook();
+		// create object in AddressBook class for add new person
+		AddressBook contactTwo = new AddressBook();
+		
+		// create object for taking input
 		Scanner scanner = new Scanner(System.in);
+		
+		// Print Message for user
 		System.out.println("------- Enter details of new person ---------");
-
+		
+		// take input from user
 		System.out.print("Enter Frist Name: ");
-		addressBook.setFirstName(scanner.nextLine());
+		contactTwo.setFirstName(scanner.nextLine());
 		System.out.print("Enter Last Name: ");
-		addressBook.setLastName(scanner.nextLine());
+		contactTwo.setLastName(scanner.nextLine());
 		System.out.print("Enter Address: ");
-		addressBook.setAddress(scanner.nextLine());
+		contactTwo.setAddress(scanner.nextLine());
 		System.out.print("Enter City: ");
-		addressBook.setCity(scanner.nextLine());
+		contactTwo.setCity(scanner.nextLine());
 		System.out.print("Enter State: ");
-		addressBook.setState(scanner.nextLine());
+		contactTwo.setState(scanner.nextLine());
 		System.out.print("Enter Pin: ");
-		addressBook.setZip(scanner.nextLine());
+		contactTwo.setZip(scanner.nextLine());
 		System.out.print("Enter Phone Number: ");
-		addressBook.setPhoneNumber(scanner.nextLine());
+		contactTwo.setPhoneNumber(scanner.nextLine());
 		System.out.print("Enter Email: ");
-		addressBook.setEmail(scanner.nextLine());
+		contactTwo.setEmail(scanner.nextLine());
 
 		// create object for contactStore
 		ContactStore contactStore = new ContactStore();
 
 		// add customer data into contact store
-		contactStore.add(customer1);
-		contactStore.add(addressBook);
-
+		contactStore.add(contactOne);
+		contactStore.add(contactTwo);
+		
+		// create object for userInterface 
 		UserInterface userInterface = new UserInterface();
+		
+		// print contact details
 		userInterface.print(contactStore.getContactList());
-
+	
+		System.out.println("--------- Contact Edit ------------");
+		// print message for user 
+		
+		System.out.print("Find contact detail using First Name: ");
+		String name = scanner.nextLine();
+		
+		// check contact is available or not
+		if(contactOne.getFirstName().equalsIgnoreCase(name) == true)
+			userInterface.edit(contactOne);
+		else if (contactTwo.getFirstName().equalsIgnoreCase(name)== true)
+			userInterface.edit(contactTwo);
+		else
+			System.out.println("Contact Details invalid");
+		
+		System.out.println(" -------- Contact List after edit ---------- ");
+		userInterface.print(contactStore.getContactList());
 	}
 
 }
